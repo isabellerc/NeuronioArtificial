@@ -5,15 +5,15 @@ namespace ConsoleApp1
 {
     public class NeuronioArtificial
     {
-        public Pesos Pesos { get; set; }
-        public double O { get; set; }
-        public double TaxaAprendizado { get; set; }
+        public Pesos Pesos { get; private set; }
+        public double O { get; private set; }
+        public double TaxaAprendizado { get; private set; }
 
-        public NeuronioArtificial(double taxaAprendizado)
+        public NeuronioArtificial(double taxaAprendizado, double w1, double w2)
         {
             O = 0.0;
             TaxaAprendizado = taxaAprendizado;
-            Pesos = new Pesos();
+            Pesos = new Pesos(w1, w2);
         }
 
         public void Treinar(List<Entradas> listaEntradas)
@@ -33,8 +33,7 @@ namespace ConsoleApp1
             }
         }
 
-
-        public int FuncaoClassificacao(double o)
+        private int FuncaoClassificacao(double o)
         {
             return o >= 0 ? 1 : 0;
         }
